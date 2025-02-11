@@ -1,14 +1,21 @@
 pipeline {
-   agent any
-   tools {
-       maven 'Maven 3.8.1'   // Use a pre-configured Maven installation
-       jdk 'JDK 11'          // Use a pre-configured JDK installation
-   }
-   stages {
-       stage('Build') {
-           steps {
-               sh 'mvn clean install'
-           }
-       }
-   }
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    bat 'echo Starting Hello World Pipeline'
+                    bat 'javac Main.java'  // Ensure the filename matches your class name
+                }
+            }
+        }
+        stage('Execute Script') {
+            steps {
+                script {
+                    bat 'java Main'  // Run the compiled Java class
+                }
+            }
+        }
+    }
 }
+

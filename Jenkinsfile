@@ -1,19 +1,19 @@
 pipeline {
     agent { label 'agent1' }
-    
+
     stages {
         stage('Build') {
             steps {
                 script {
-                    bat 'echo Starting Hello World Pipeline'
-                    bat 'javac HelloWorld.java'  // Ensure the filename matches your class name
+                    sh 'echo "Starting Hello World Pipeline"'
+                    sh 'javac HelloWorld.java'  // Compile Java file
                 }
             }
         }
         stage('Execute Script') {
             steps {
                 script {
-                    bat 'java HelloWorld'  // Run the compiled Java class
+                    sh 'java HelloWorld'  // Run the compiled Java class
                 }
             }
         }
